@@ -20,6 +20,7 @@ public class UserServico {
     	 
      }
      
+ 	// buscar por id:
      public User findById(Long id){
     	 Optional<User> obj = repository.findById(id);
     	 return obj.get();

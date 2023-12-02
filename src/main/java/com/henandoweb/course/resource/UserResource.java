@@ -24,6 +24,9 @@ public class UserResource {
 		List<User> list = servico.findAll();
 		return ResponseEntity.ok().body(list);
 	}
+	
+	//endpoint buscar por id:
+	
      @GetMapping(value = "/{id}")
 	public ResponseEntity<User> findById(@PathVariable Long  id){
     	 User obj = servico.findById(id);
