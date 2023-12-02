@@ -20,7 +20,7 @@ public class UserServico {
     	 
      }
      
- 	// buscar por id:
+ 	// buscar porUserServico.java id:
      public User findById(Long id){
     	 Optional<User> obj = repository.findById(id);
     	 return obj.get();
