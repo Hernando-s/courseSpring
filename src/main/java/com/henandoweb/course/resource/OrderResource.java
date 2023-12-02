@@ -13,7 +13,7 @@ import com.henandoweb.course.entities.Order;
 import com.henandoweb.course.servico.OrderServico;
 
 @RestController
-@RequestMapping(value = "/order")
+@RequestMapping(value = "/orders")
 public class OrderResource {
 	
 	@Autowired

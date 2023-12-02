@@ -13,7 +13,7 @@ import com.henandoweb.course.entities.Category;
 import com.henandoweb.course.servico.CategoryServico;
 
 @RestController
-@RequestMapping(value = "/users")
+@RequestMapping(value = "/categories")
 public class CategoryResource {
 	
 	@Autowired

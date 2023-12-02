@@ -23,11 +23,13 @@ public class Testconfig implements CommandLineRunner {
     @Autowired
 	private UserRepository userRepository;
     
-    @Autowired
-    private OrderRepository orderRepository;
+    
     
     @Autowired 
     private CategoryRepository categoryRepository;
+    
+    @Autowired
+    private OrderRepository orderRepository;
     
 	@Override
 	public void run(String... args) throws Exception {

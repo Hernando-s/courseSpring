@@ -1,22 +1,22 @@
 package com.henandoweb.course.entities.enuns;
 
 public enum OrderStatus {
-	WAITING_PAYMENT("Aguardando Pagamento"),
-	PAID("pago"),
-	SHIPPED("Pedido Enviado"),
-	DELIVERED("Pedido Entrege"),
-	CANCELED("Pedido Cancelado");
+	WAITING_PAYMENT(1),
+	PAID(2),
+	SHIPPED(3),
+	DELIVERED(4),
+	CANCELED(5);
 	
-	private String code;
+	private int code;
 	
-	private  OrderStatus (String code) {
+	private  OrderStatus (int code) {
 		this.code = code;
 	}
 	
-	public String getCode(){
+	public int getCode(){
 		return code;
 	}
-	public static OrderStatus value(String code) {
+	public static OrderStatus valueOf(int code) {
 		for(OrderStatus value : OrderStatus.values()) {
 			if(value.getCode() == code ) {
 				return value;
