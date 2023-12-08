@@ -10,10 +10,12 @@ import org.springframework.context.annotation.Profile;
 
 import com.henandoweb.course.entities.Category;
 import com.henandoweb.course.entities.Order;
+import com.henandoweb.course.entities.OrderItem;
 import com.henandoweb.course.entities.Product;
 import com.henandoweb.course.entities.User;
 import com.henandoweb.course.entities.enuns.OrderStatus;
 import com.henandoweb.course.repository.CategoryRepository;
+import com.henandoweb.course.repository.OrderItemRepository;
 import com.henandoweb.course.repository.OrderRepository;
 import com.henandoweb.course.repository.ProductRepository;
 import com.henandoweb.course.repository.UserRepository;
@@ -35,6 +37,9 @@ public class Testconfig implements CommandLineRunner {
     
     @Autowired
     private ProductRepository productRepository;
+    
+    @Autowired
+    private OrderItemRepository orderItemrepository;
     
 	@Override
 	public void run(String... args) throws Exception {
@@ -82,6 +87,14 @@ public class Testconfig implements CommandLineRunner {
 		
 		userRepository.saveAll(Arrays.asList(u1,u2));
 		orderRepository.saveAll(Arrays.asList(o1,o2,o3));
+		
+		
+		OrderItem oi1 = new OrderItem(o1, p1, 2, p1.getPrice()); 
+		OrderItem oi2 = new OrderItem(o1, p3, 1, p3.getPrice()); 
+		OrderItem oi3 = new OrderItem(o2, p3, 2, p3.getPrice()); 
+		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice()); 
+		
+		orderItemrepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
 	}
 	
 
