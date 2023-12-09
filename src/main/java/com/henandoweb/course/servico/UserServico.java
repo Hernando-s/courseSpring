@@ -11,28 +11,28 @@ import com.henandoweb.course.repository.UserRepository;
 
 @Service
 public class UserServico {
-	
-     @Autowired
+
+	@Autowired
 	private UserRepository repository;
-     
-     public List<User> findAll(){
-    	return repository.findAll();
-    	 
-     }
-     
- 	// buscar por id:
-     public User findById(Long id){
-    	 Optional<User> obj = repository.findById(id);
-    	 return obj.get();
-     }
-     
-     //inserir um usuario no banco
-     public User insert(User obj) {
-    	 return repository.save(obj);
-     }
-     
-      
 
+	public List<User> findAll() {
+		return repository.findAll();
 
-	
+	}
+
+	// buscar por id:
+	public User findById(Long id) {
+		Optional<User> obj = repository.findById(id);
+		return obj.get();
+	}
+
+	// inserir um usuario no banco
+	public User insert(User obj) {
+		return repository.save(obj);
+	}
+	//deletar um usuario do banco
+	public void delete(Long id) {
+		repository.deleteById(id);
+	}
+
 }
