@@ -20,10 +20,19 @@ public class UserServico {
     	 
      }
      
- 	// buscar porUserServico.java id:
+ 	// buscar por id:
      public User findById(Long id){
     	 Optional<User> obj = repository.findById(id);
     	 return obj.get();
      }
+     
+     //inserir um usuario no banco
+     public User insert(User obj) {
+    	 return repository.save(obj);
+     }
+     
+      
+
+
 	
 }

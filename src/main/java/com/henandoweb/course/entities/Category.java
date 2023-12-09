@@ -23,7 +23,7 @@ public class Category implements Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
-    @JsonIgnore
+	@JsonIgnore
 	@ManyToMany(mappedBy = "categories")
 	private Set<Product> produts = new HashSet<>();
 
@@ -48,12 +48,12 @@ public class Category implements Serializable {
 		return name;
 	}
 
-	public Set<Product> getProduts() {
-		return produts;
-	}
-
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public Set<Product> getProduts() {
+		return produts;
 	}
 
 	@Override
