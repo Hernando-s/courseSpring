@@ -11,6 +11,7 @@ import org.springframework.context.annotation.Profile;
 import com.henandoweb.course.entities.Category;
 import com.henandoweb.course.entities.Order;
 import com.henandoweb.course.entities.OrderItem;
+import com.henandoweb.course.entities.Payment;
 import com.henandoweb.course.entities.Product;
 import com.henandoweb.course.entities.User;
 import com.henandoweb.course.entities.enuns.OrderStatus;
@@ -95,7 +96,10 @@ public class Testconfig implements CommandLineRunner {
 		OrderItem oi4 = new OrderItem(o3, p5, 2, p5.getPrice()); 
 		
 		orderItemrepository.saveAll(Arrays.asList(oi1,oi2,oi3,oi4));
+		
+		Payment pay1 = new Payment(null,Instant.parse("2019-06-20T21:53:07Z"),o1);
+		o1.setPayment(pay1);
+		orderRepository.save(o1);
 	}
 	
-
 }
