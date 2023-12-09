@@ -1,6 +1,7 @@
 package com.henandoweb.course.entities;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.henandoweb.course.entities.pk.OrderItemPK;
@@ -17,7 +18,7 @@ public class OrderItem implements Serializable {
 	@EmbeddedId
 	private OrderItemPK id = new OrderItemPK();
 
-	private Integer Quantity;
+	private Integer quantity;
 	private Double price;
 
 	public OrderItem() {
@@ -27,7 +28,7 @@ public class OrderItem implements Serializable {
 		super();
 		id.setOrder(order);
 		id.setProduct(product);
-		Quantity = quantity;
+		this.quantity = quantity;
 		this.price = price;
 	}
     @JsonIgnore
@@ -48,11 +49,11 @@ public class OrderItem implements Serializable {
 	}
 
 	public Integer getQuantity() {
-		return Quantity;
+		return quantity;
 	}
 
 	public void setQuantity(Integer quantity) {
-		Quantity = quantity;
+		this.quantity = quantity;
 	}
 
 	public Double getPrice() {
@@ -61,6 +62,28 @@ public class OrderItem implements Serializable {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+	
+	public Double getSubTotal() {
+		return quantity * price;
+		
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		OrderItem other = (OrderItem) obj;
+		return Objects.equals(id, other.id);
 	}
 
 }
