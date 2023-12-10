@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.henandoweb.course.entities.User;
 import com.henandoweb.course.repository.UserRepository;
+import com.henandoweb.course.servico.exeption.DatabaseException;
 import com.henandoweb.course.servico.exeption.ResourceNotFoundExeption;
 
 @Service
@@ -31,14 +34,23 @@ public class UserServico {
 	public User insert(User obj) {
 		return repository.save(obj);
 	}
-	//deleta um usuario do banco
+
+	// deleta um usuario do banco
 	public void delete(Long id) {
-		repository.deleteById(id);
+		try {
+			repository.deleteById(id);
+		} catch (EmptyResultDataAccessException e) {
+			throw new ResourceNotFoundExeption(id);
+			
+		}catch(DataIntegrityViolationException e) {
+			throw new DatabaseException(e.getMessage());
+		}
 	}
-	//atualiza dados do usuario
-	public User update(Long id,User obj) {
+
+	// atualiza dados do usuario
+	public User update(Long id, User obj) {
 		User entity = repository.getReferenceById(id);
-		updateData(entity,obj);
+		updateData(entity, obj);
 		return repository.save(entity);
 	}
 
