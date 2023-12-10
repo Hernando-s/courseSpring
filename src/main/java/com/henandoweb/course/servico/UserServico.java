@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.henandoweb.course.entities.User;
 import com.henandoweb.course.repository.UserRepository;
+import com.henandoweb.course.servico.exeption.ResourceNotFoundExeption;
 
 @Service
 public class UserServico {
@@ -23,7 +24,7 @@ public class UserServico {
 	// buscar por id:
 	public User findById(Long id) {
 		Optional<User> obj = repository.findById(id);
-		return obj.get();
+		return obj.orElseThrow(() -> new ResourceNotFoundExeption(id));
 	}
 
 	// inseri um usuario no banco
