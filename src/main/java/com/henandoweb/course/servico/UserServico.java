@@ -13,6 +13,8 @@ import com.henandoweb.course.repository.UserRepository;
 import com.henandoweb.course.servico.exeption.DatabaseException;
 import com.henandoweb.course.servico.exeption.ResourceNotFoundExeption;
 
+import jakarta.persistence.EntityNotFoundException;
+
 @Service
 public class UserServico {
 
@@ -41,17 +43,21 @@ public class UserServico {
 			repository.deleteById(id);
 		} catch (EmptyResultDataAccessException e) {
 			throw new ResourceNotFoundExeption(id);
-			
-		}catch(DataIntegrityViolationException e) {
+
+		} catch (DataIntegrityViolationException e) {
 			throw new DatabaseException(e.getMessage());
 		}
 	}
 
 	// atualiza dados do usuario
 	public User update(Long id, User obj) {
+		try {
 		User entity = repository.getReferenceById(id);
 		updateData(entity, obj);
 		return repository.save(entity);
+		}catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundExeption(id);
+		}
 	}
 
 	private void updateData(User entity, User obj) {
